@@ -80,3 +80,39 @@ function displayLeaderboard() {
 
 /* ---------- Initial Display ---------- */
 displayLeaderboard();
+/* ---------- Easter Egg: Konami Code ---------- */
+const konamiCode = [38,38,40,40,37,39,37,39,66,65]; // key codes
+let konamiIndex = 0;
+
+document.addEventListener('keydown', function(e){
+  if(e.keyCode === konamiCode[konamiIndex]){
+    konamiIndex++;
+    if(konamiIndex === konamiCode.length){
+      triggerEasterEgg();
+      konamiIndex = 0; // reset
+    }
+  } else {
+    konamiIndex = 0;
+  }
+});
+
+function triggerEasterEgg(){
+  const message = document.getElementById('easterEggMessage');
+  message.style.display = 'block';
+  
+  // Flash background colors
+  let colors = ['#ff3f3f','#6f3fff','#3fff6f','#fff33f','#3fffff'];
+  let i=0;
+  let flash = setInterval(()=>{
+    document.body.style.background = colors[i%colors.length];
+    i++;
+  },200);
+
+  // Stop after 3 seconds
+  setTimeout(()=>{
+    clearInterval(flash);
+    document.body.style.background = '#0d0d0d'; // original
+    message.style.display = 'none';
+  },3000);
+}
+
