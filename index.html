@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameZone Xtreme</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>GameZone Xtreme</h1>
+    <nav>
+      <a href="#mini-games">Mini-Games</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#news">News & Tips</a>
+      <a href="#leaderboard">Leaderboard</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h2>Welcome to GameZone Xtreme!</h2>
+    <p>The ultimate hub for gamers: play, laugh, compete!</p>
+  </section>
+
+  <section id="mini-games">
+    <h2>Mini-Games 🎮</h2>
+    <div class="game-container">
+      <div class="game">
+        <h3>Dice Roll</h3>
+        <button onclick="rollDice()">Roll Dice 🎲</button>
+        <p id="diceResult">Score will appear here</p>
+      </div>
+      <div class="game">
+        <h3>Click Frenzy</h3>
+        <button id="clickButton">Click Me!</button>
+        <p id="clickScore">Score: 0 | Time left: 10s</p>
+      </div>
+      <div class="game">
+        <h3>Reaction Time</h3>
+        <button id="reactionButton" onclick="reactionClicked()">Wait...</button>
+        <p id="reactionResult">Time: 0 ms</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <h2>Gaming News & Tips</h2>
+    <ul>
+      <li>Top 5 tips to improve your aim in FPS games</li>
+      <li>New expansion release for popular RPGs</li>
+      <li>Fun Easter eggs hidden in trending games</li>
+    </ul>
+  </section>
+
+  <section id="leaderboard">
+    <h2>Leaderboard 🏆</h2>
+    <ul id="leaderboardList"></ul>
+  </section>
+
+  <footer>
+    <p>© 2025 GameZone Xtreme. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
