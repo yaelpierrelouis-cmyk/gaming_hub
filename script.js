@@ -5,20 +5,40 @@ function rollDice() {
   saveScore('Dice Roll', dice);
 }
 
-/* ---------- Clicker Game ---------- */
-let clickScore = 0, clickTime = 10;
+/* ---------- Clicker Game (Timer starts on first click) ---------- */
+let clickScore = 0;
+let clickTime = 10;
+let clickInterval = null; // will store setInterval
+let clickStarted = false;
+
 const clickButton = document.getElementById('clickButton');
-clickButton.onclick = () => clickScore++;
-setInterval(() => {
-  if(clickTime>0){
-    clickTime--;
-    document.getElementById('clickScore').innerText = `Score: ${clickScore} | Time left: ${clickTime}s`;
-  } else {
-    alert(`Time's up! Clicker Score: ${clickScore}`);
-    saveScore('Clicker Game', clickScore);
-    clickScore=0; clickTime=10;
+const clickScoreDisplay = document.getElementById('clickScore');
+
+clickButton.onclick = () => {
+  clickScore++;
+  clickScoreDisplay.innerText = `Score: ${clickScore} | Time left: ${clickTime}s`;
+
+  // Start timer only on first click
+  if(!clickStarted){
+    clickStarted = true;
+    clickInterval = setInterval(() => {
+      if(clickTime > 0){
+        clickTime--;
+        clickScoreDisplay.innerText = `Score: ${clickScore} | Time left: ${clickTime}s`;
+      } else {
+        alert(`Time's up! Clicker Score: ${clickScore}`);
+        saveScore('Clicker Game', clickScore);
+        // Reset game
+        clickScore = 0;
+        clickTime = 10;
+        clickStarted = false;
+        clearInterval(clickInterval);
+        clickScoreDisplay.innerText = `Score: ${clickScore} | Time left: ${clickTime}s`;
+      }
+    }, 1000);
   }
-},1000);
+};
+
 
 /* ---------- Reaction Time Game ---------- */
 let reactionStart = null;
